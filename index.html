@@ -1,153 +1,718 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              <!DOCTYPE html>
-<!-- Line 1: Declare HTML5 document type -->
+<!-- Line 1: Document type declaration for HTML5 -->
+<!DOCTYPE html>
+<!-- Line 2: Opening html tag with language attribute -->
 <html lang="en">
-<!-- Line 2: Root HTML element with language attribute -->
+<!-- Line 3: Opening head tag -->
 <head>
-  <!-- Line 3: Metadata container -->
-  <meta charset="utf-8" />
-  <!-- Line 4: Character encoding -->
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <!-- Line 5: Responsive viewport settings -->
-  <title>Gbolahan Daniel Osonaike — Portfolio</title>
-  <!-- Line 6: Document title -->
-  
-  <!-- Line 7: Import Montserrat font with weights 400 and 600 -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  
-  <style>
-    /* Line 8: CSS Variables for colors, radius, max-width */
-    :root{
-      --bg:#0d0d0d; --panel:#111; --muted:#777; --accent:#00e0ff; --glass: rgba(255,255,255,0.03);
-      --radius:12px; --maxw:1100px;
-    }
+<!-- Line 4: Character set declaration -->
+<meta charset="utf-8" />
+<!-- Line 5: Viewport settings for responsive design -->
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- Line 6: Title of the webpage -->
+<title>Gbolahan Daniel Osonaike — Portfolio</title>
+<!-- Line 7: Google Fonts link for Montserrat -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<!-- Line 8: Opening style tag for internal CSS -->
+<style>
+  /* Line 9: CSS root variables for colors, radius, and max width */
+  :root{
+    --bg:#0d0d0d; --panel:#111; --muted:#777; --accent:#00e0ff; --glass: rgba(255,255,255,0.03);
+    --radius:12px; --maxw:1100px;
+  }
+  /* Line 10: Smooth scrolling for the document */
+  html{scroll-behavior:smooth}
+  /* Line 11: Basic body styles */
+  body{margin:0; font-family: 'Montserrat', Inter, "Segoe UI", Roboto, Arial, sans-serif; font-weight:400; background:var(--bg); color:#f2f2f2;}
+  /* Line 12: Headline font weight */
+  h1,h2,h3,h4,h5{font-weight:600}
+  /* Line 13: Particle canvas styling */
+  #particle-canvas{position:fixed; inset:0; z-index:0; pointer-events:none;}
 
-    /* Line 9: Smooth scrolling */
-    html{scroll-behavior:smooth}
+  /* Line 14: Navigation styling */
+  nav{position:fixed; inset:0 0 auto 0; z-index:1200; height:64px; display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(180deg, rgba(17,17,17,0.85), rgba(17,17,17,0.65)); backdrop-filter: blur(6px); border-bottom:1px solid rgba(255,255,255,0.03);}
+  /* Line 15: Inner navigation wrapper */
+  .nav-inner{max-width:var(--maxw); width:100%; padding:0 18px; display:flex; align-items:center; justify-content:space-between;}
+  /* Line 16: Brand styling */
+  .brand{display:flex;flex-direction:column; font-weight:600; color:var(--accent);}
+  /* Line 17: Brand title font size and color */
+  .brand .title{font-size:1.05rem; color:#fff}
+  /* Line 18: Menu styling */
+  .menu{display:flex; gap:18px; align-items:center}
+  /* Line 19: Menu link styling */
+  .menu a{color:var(--accent); text-decoration:none; font-weight:600; padding:6px 8px; border-radius:6px}
+  /* Line 20: Menu link hover effects */
+  .menu a:hover{color:#fff; box-shadow:0 0 12px rgba(0,224,255,0.12)}
+  /* Line 21: Toggle button hidden by default */
+  .menu-toggle{display:none}
 
-    /* Line 10: Body styles with Montserrat font */
-    body{
-      margin:0;
-      font-family: 'Montserrat', Inter, "Segoe UI", Roboto, Arial, sans-serif;
-      font-weight:400;
-      background:var(--bg);
-      color:#f2f2f2;
-    }
+  /* Line 22: Header / hero section styling */
+  header{padding:120px 20px 48px; text-align:center; position:relative; z-index:10;}
+  /* Line 23: Hero container grid */
+  .hero{max-width:var(--maxw); margin:auto; display:grid; gap:18px; align-items:center;}
+  /* Line 24: Top part of hero with heading */
+  .hero-top{display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap}
+  /* Line 25: Hero main heading styling */
+  .hero h1{font-size:2.4rem; margin:0; letter-spacing:-0.02em;}
+  /* Line 26: Typing animation span styling */
+  .typing{color:var(--accent); font-weight:700; margin-left:6px;}
+  /* Line 27: Intro paragraph box */
+  .intro{max-width:900px; margin:auto; color:var(--muted); background:var(--glass); padding:18px;border-radius:12px;}
 
-    /* Line 11: Headings semi-bold */
-    h1,h2,h3,h4,h5{font-weight:600}
+  /* Line 28: Main container styling */
+  main{position:relative; z-index:10; max-width:var(--maxw); margin:28px auto; padding:0 18px 80px;}
+  /* Line 29: Section styling */
+  section{margin:48px 0; padding:28px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+  /* Line 30: Section heading styling */
+  h2{color:var(--accent); margin:0 0 14px 0; font-size:1.1rem; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:8px}
 
-    /* Line 12: Particle canvas fixed in background */
-    #particle-canvas{position:fixed; inset:0; z-index:0; pointer-events:none;}
+  /* Line 31: Video container styles */
+  .video-container{position:relative; width:100%; padding-bottom:56.25%; border-radius:var(--radius); overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,0.6)}
+  /* Line 32: Video iframe styling */
+  .video-container iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
-    /* Line 13: Navigation bar styles */
-    nav{
-      position:fixed; inset:0 0 auto 0; z-index:1200; height:64px;
-      display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(17,17,17,0.85), rgba(17,17,17,0.65));
-      backdrop-filter: blur(6px); border-bottom:1px solid rgba(255,255,255,0.03);
-    }
+  /* Line 33: Image grid and project cards styling */
+  .image-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  /* Line 34: Card styling */
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .35s, box-shadow .35s}
+  /* Line 35: Card hover effects */
+  .card:hover{transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+  /* Line 36: Card image styling */
+  .card img{display:block; width:100%; height:220px; object-fit:cover; transition:transform .45s}
+  /* Line 37: Card image hover effect */
+  .card:hover img{transform:scale(1.06)}
+  /* Line 38: Card body padding */
+  .card-body{padding:12px 14px}
+  /* Line 39: Project title styling */
+  .project-title{font-weight:700; color:#fff; margin-bottom:6px; font-size:0.98rem}
+  /* Line 40: Project description styling */
+  .project-desc{color:var(--muted); font-size:0.92rem; line-height:1.35}
 
-    /* Line 14: Inner nav container */
-    .nav-inner{
-      max-width:var(--maxw); width:100%; padding:0 18px;
-      display:flex; align-items:center; justify-content:space-between;
-    }
+  /* Line 41: Back to top button styling */
+  #backTop{position:fixed; right:20px; bottom:28px; z-index:1300; width:56px; height:56px; display:grid; place-items:center; background:var(--accent); color:#002; border-radius:14px; box-shadow:0 12px 28px rgba(0,0,0,0.5); cursor:pointer; transform:translateY(20px); opacity:0; transition:all .35s}
+  /* Line 42: Show back to top button */
+  #backTop.show{opacity:1; transform:translateY(0)}
 
-    /* Line 15: Brand styles */
-    .brand{
-      display:flex; flex-direction:column; font-weight:600; color:var(--accent);
-    }
+  /* Line 43: Contact form row layout */
+  form .row{display:flex; gap:12px; flex-wrap:wrap}
+  /* Line 44: Input and textarea styling */
+  input, textarea{width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff; font-family: 'Montserrat', sans-serif;}
+  /* Line 45: Placeholder color */
+  input::placeholder, textarea::placeholder{color: #9aa;}
+  /* Line 46: Button styling */
+  .btn{background:var(--accent); color:#002; padding:10px 14px; border-radius:10px; border:none; font-weight:700; cursor:pointer;}
 
-    .brand .title{font-size:1.05rem; color:#fff}
+  /* Line 47: Social icons container */
+  .social{display:flex; gap:12px; justify-content:center; margin-top:12px}
+  /* Line 48: Social link styling */
+  .social a{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--accent); text-decoration:none; transition:transform .28s, box-shadow .28s}
+  /* Line 49: Social icon hover effect */
+  .social a:hover{transform:translateY(-6px) scale(1.06); box-shadow:0 12px 30px rgba(0,224,255,0.08)}
 
-    /* Line 16: Menu links */
-    .menu{display:flex; gap:18px; align-items:center}
-    .menu a{
-      color:var(--accent); text-decoration:none; font-weight:600;
-      padding:6px 8px; border-radius:6px
-    }
-    .menu a:hover{color:#fff; box-shadow:0 0 12px rgba(0,224,255,0.12)}
+  /* Line 50: SVG stroke animation for social icons */
+  .svg-icon {width:20px; height:20px; display:block}
+  /* Line 51: SVG path transition */
+  .svg-icon path, .svg-icon circle, .svg-icon rect{transition:stroke-dashoffset .8s ease, stroke .3s}
+  /* Line 52: Stroke color change on hover */
+  .social a:hover .svg-icon path{stroke: #fff; stroke-dashoffset:0}
 
-    /* Line 17: Mobile menu toggle button */
-    .menu-toggle{display:none}
+  /* Line 53: Lightbox overlay */
+  .overlay{position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.92));}
+  /* Line 54: Show overlay when active */
+  .overlay.show{display:flex}
+  /* Line 55: Viewer container */
+  .viewer{position:relative; width:90%; max-width:1400px; max-height:95vh; display:flex; gap:14px; align-items:center; justify-content:center;}
+  /* Line 56: Viewer image styling */
+  .viewer img{max-width:100%; max-height:92vh; object-fit:contain; border-radius:10px; box-shadow:0 18px 80px rgba(0,0,0,0.7)}
+  /* Line 57: Viewer meta info */
+  .viewer .meta{position:absolute; left:18px; bottom:18px; color:var(--muted); font-size:0.95rem}
+  /* Line 58: Viewer control buttons styling */
+  .viewer .close, .viewer .prev, .viewer .next, .viewer .fs {position:absolute; top:18px; background:rgba(255,255,255,0.03); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer;}
+  /* Line 59: Close button position */
+  .viewer .close{right:18px}
+  /* Line 60: Prev button position */
+  .viewer .prev{left:12px; top:50%; transform:translateY(-50%); border-radius:50%; width:48px; height:48px}
+  /* Line 61: Next button position */
+  .viewer .next{right:12px; top:50%; transform:translateY(-50%); border-radius:50%; width:48px; height:48px}
+  /* Line 62: Fullscreen button position */
+  .viewer .fs{right:82px}
+  /* Line 63: Thumbnails container */
+  .thumbs{position:absolute; bottom:10px; display:flex; gap:8px; left:50%; transform:translateX(-50%); max-width:90%; overflow:auto; padding:6px 0}
+  /* Line 64: Thumbnail images */
+  .thumbs img{width:80px; height:60px; object-fit:cover; border-radius:6px; opacity:.6; cursor:pointer; border:2px solid transparent}
+  /* Line 65: Active thumbnail */
+  .thumbs img.active{opacity:1; border-color:var(--accent)}
 
-    /* Line 18: Header / Hero section padding */
-    header{padding:120px 20px 48px; text-align:center; position:relative; z-index:10;}
-    .hero{max-width:var(--maxw); margin:auto; display:grid; gap:18px; align-items:center;}
-    .hero-top{display:flex; gap:18px; align-items:center; justify-content:center; flex-wrap:wrap}
-    .hero h1{font-size:2.4rem; margin:0; letter-spacing:-0.02em;}
-    .typing{color:var(--accent); font-weight:700; margin-left:6px;}
-    .intro{max-width:900px; margin:auto; color:var(--muted); background:var(--glass); padding:18px;border-radius:12px;}
-
-    /* Line 19: Main content container */
-    main{position:relative; z-index:10; max-width:var(--maxw); margin:28px auto; padding:0 18px 80px;}
-    section{margin:48px 0; padding:28px; border-radius:14px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00)); box-shadow:0 6px 20px rgba(0,0,0,0.6)}
-    h2{color:var(--accent); margin:0 0 14px 0; font-size:1.1rem; border-bottom:1px solid rgba(255,255,255,0.03); padding-bottom:8px}
-
-    /* Line 20: Video container */
-    .video-container{position:relative; width:100%; padding-bottom:56.25%; border-radius:var(--radius); overflow:hidden; box-shadow:0 14px 40px rgba(0,0,0,0.6)}
-    .video-container iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
-
-    /* Line 21: Image grid / project cards */
-    .image-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01)); border-radius:12px; overflow:hidden; cursor:pointer; transition:transform .35s, box-shadow .35s}
-    .card:hover{transform:translateY(-8px); box-shadow:0 18px 40px rgba(0,0,0,0.6)}
-    .card img{display:block; width:100%; height:220px; object-fit:cover; transition:transform .45s}
-    .card:hover img{transform:scale(1.06)}
-    .card-body{padding:12px 14px}
-    .project-title{font-weight:700; color:#fff; margin-bottom:6px; font-size:0.98rem}
-    .project-desc{color:var(--muted); font-size:0.92rem; line-height:1.35}
-
-    /* Line 22: Back to top button */
-    #backTop{position:fixed; right:20px; bottom:28px; z-index:1300; width:56px; height:56px; display:grid; place-items:center; background:var(--accent); color:#002; border-radius:14px; box-shadow:0 12px 28px rgba(0,0,0,0.5); cursor:pointer; transform:translateY(20px); opacity:0; transition:all .35s}
-    #backTop.show{opacity:1; transform:translateY(0)}
-
-    /* Line 23: Contact form input styles */
-    form .row{display:flex; gap:12px; flex-wrap:wrap}
-    input, textarea{width:100%; padding:10px 12px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); background:transparent; color:#fff; font-family: 'Montserrat', sans-serif;}
-    input::placeholder, textarea::placeholder{color: #9aa;}
-    .btn{background:var(--accent); color:#002; padding:10px 14px; border-radius:10px; border:none; font-weight:700; cursor:pointer;}
-
-    /* Line 24: Social icons */
-    .social{display:flex; gap:12px; justify-content:center; margin-top:12px}
-    .social a{display:inline-grid; place-items:center; width:38px; height:38px; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--accent); text-decoration:none; transition:transform .28s, box-shadow .28s}
-    .social a:hover{transform:translateY(-6px) scale(1.06); box-shadow:0 12px 30px rgba(0,224,255,0.08)}
-
-    /* Line 25: SVG icon stroke animation */
-    .svg-icon {width:20px; height:20px; display:block}
-    .svg-icon path, .svg-icon circle, .svg-icon rect{transition:stroke-dashoffset .8s ease, stroke .3s}
-    .social a:hover .svg-icon path{stroke: #fff; stroke-dashoffset:0}
-
-    /* Line 26: Lightbox overlay */
-    .overlay{position:fixed; inset:0; z-index:2000; display:none; align-items:center; justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.92));}
-    .overlay.show{display:flex}
-    .viewer{position:relative; width:90%; max-width:1400px; max-height:95vh; display:flex; gap:14px; align-items:center; justify-content:center;}
-    .viewer img{max-width:100%; max-height:92vh; object-fit:contain; border-radius:10px; box-shadow:0 18px 80px rgba(0,0,0,0.7)}
-    .viewer .meta{position:absolute; left:18px; bottom:18px; color:var(--muted); font-size:0.95rem}
-    .viewer .close, .viewer .prev, .viewer .next, .viewer .fs {position:absolute; top:18px; background:rgba(255,255,255,0.03); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer;}
-    .viewer .close{right:18px}
-    .viewer .prev{left:12px; top:50%; transform:translateY(-50%); border-radius:50%; width:48px; height:48px}
-    .viewer .next{right:12px; top:50%; transform:translateY(-50%); border-radius:50%; width:48px; height:48px}
-    .viewer .fs{right:82px}
-    .thumbs{position:absolute; bottom:10px; display:flex; gap:8px; left:50%; transform:translateX(-50%); max-width:90%; overflow:auto; padding:6px 0}
-    .thumbs img{width:80px; height:60px; object-fit:cover; border-radius:6px; opacity:.6; cursor:pointer; border:2px solid transparent}
-    .thumbs img.active{opacity:1; border-color:var(--accent)}
-
-    /* Line 27: Responsive adjustments */
-    @media (max-width:980px){ .image-grid{grid-template-columns:repeat(2,1fr)} .card img{height:180px} }
-    @media (max-width:640px){
-      nav .menu{display:none} .menu-toggle{display:block} .image-grid{grid-template-columns:1fr} header{padding-top:100px} .hero h1{font-size:1.6rem}
-      .viewer .prev, .viewer .next{display:none} .viewer .fs{right:18px} .thumbs img{width:64px; height:48px}
-    }
-  </style>
-
-  <!-- Line 28: Script section for JS functionality -->
-  <script>
-    /* Line 158 onward: fully commented JavaScript as in previous response */
-  </script>
+  /* Line 66: Responsive adjustments for 980px */
+  @media (max-width:980px){ .image-grid{grid-template-columns:repeat(2,1fr)} .card img{height:180px} }
+  /* Line 67: Responsive adjustments for 640px */
+  @media (max-width:640px){
+    nav .menu{display:none} .menu-toggle{display:block} .image-grid{grid-template-columns:1fr} header{padding-top:100px} .hero h1{font-size:1.6rem}
+    .viewer .prev, .viewer .next{display:none} .viewer .fs{right:18px} .thumbs img{width:64px; height:48px}
+  }
+</style>
+<!-- Line 68: Closing head tag -->
 </head>
+<!-- Line 69: Opening body tag -->
 <body>
-  <!-- Line 29+: Body content with same comments structure -->
-</body>
-</html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+<!-- Line 70: Particle canvas -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+<!-- Line 71: Navigation bar with ARIA role for accessibility -->
+<nav role="navigation" aria-label="Main navigation">
+  <!-- Line 72: Inner container for nav content -->
+  <div class="nav-inner">
+    <!-- Line 73: Brand section containing name and subtitle -->
+    <div class="brand">
+      <!-- Line 74: Brand title -->
+      <span class="title">Gbolahan D. Osonaike</span>
+      <!-- Line 75: Brand subtitle -->
+      <small style="color:var(--muted)">Digital Designer & 3D Artist</small>
+    </div>
+
+    <!-- Line 76: Navigation menu links -->
+    <div class="menu">
+      <!-- Line 77: Link to About section -->
+      <a href="#bio">About</a>
+      <!-- Line 78: Link to Videos section -->
+      <a href="#videos">Videos</a>
+      <!-- Line 79: Link to Graphics section -->
+      <a href="#graphics">Graphics</a>
+      <!-- Line 80: Link to 3D section -->
+      <a href="#3d">3D</a>
+      <!-- Line 81: Link to Projects section -->
+      <a href="#projects">Projects</a>
+      <!-- Line 82: Link to Contact section -->
+      <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Line 83: Mobile menu toggle button, hidden by default -->
+    <button class="menu-toggle" aria-hidden="true" style="background:transparent;border:0">☰</button>
+  </div>
+</nav>
+
+<!-- Line 84: Header / Hero section -->
+<header>
+  <!-- Line 85: Hero grid container -->
+  <div class="hero">
+    <!-- Line 86: Top section of hero for heading -->
+    <div class="hero-top">
+      <!-- Line 87: Main heading with typing animation span -->
+      <h1>Gbolahan Daniel Osonaike <span class="typing" id="typing"></span></h1>
+    </div>
+
+    <!-- Line 88: Intro paragraph container -->
+    <div class="intro">
+      <!-- Line 89: Intro text describing experience -->
+      <p>Innovative Digital Designer with 12+ years’ experience creating clear, engaging visual communication across public sector, agency, and corporate settings. Specialises in 3D modelling, motion, UX-friendly visuals and accessible multimedia.</p>
+    </div>
+  </div>
+</header>
+
+<!-- Line 90: Main content container -->
+<main>
+
+  <!-- Line 91: About section -->
+  <section id="bio" aria-labelledby="about-heading">
+    <!-- Line 92: Section heading -->
+    <h2 id="about-heading">About Me</h2>
+    <!-- Line 93: About text -->
+    <p style="color:var(--muted)">I design digital experiences through clear storytelling — from concept sketches and 3D models to animated assets and accessible e-learning content. I collaborate closely with stakeholders to translate complex ideas into human-centered visuals.</p>
+  </section>
+
+ <!-- Line 94: Video section -->
+<section id="videos" aria-labelledby="video-heading">
+  <!-- Line 95: Section heading -->
+  <h2 id="video-heading">YouTube Videos</h2>
+
+  <!-- Line 96: Video container -->
+  <div class="video-container" role="region" aria-label="Featured video">
+
+    <!-- Line 97: Embedded YouTube iframe -->
+    <iframe
+     src="https://www.youtube-nocookie.com/embed/HvxVO8_me1Y"
+     referrerpolicy="strict-origin-when-cross-origin"
+     …
+></iframe>
+  </div>
+</section>
+
+  <!-- Line 98: Graphics section -->
+  <section id="graphics" aria-labelledby="graphics-heading">
+    <!-- Line 99: Section heading -->
+    <h2 id="graphics-heading">Graphics</h2>
+
+    <!-- Line 100: Grid of image cards -->
+    <div class="image-grid" id="imageGrid">
+      <!-- Line 101-112: Individual graphic cards with data attributes for lightbox -->
+      <div class="card" data-index="0" data-title="Graphic 1" data-desc="Abstract composition" data-full="images/highres/1-6-high.jpg">
+        <!-- Line 102: Image for Graphic 1 -->
+        <img src="images/1 (6).jpg" alt="Graphic 1">
+        <!-- Line 103: Card body containing title and description -->
+        <div class="card-body"><div class="project-title">Graphic 1</div><div class="project-desc">Abstract composition</div></div>
+      </div>
+
+      <div class="card" data-index="1" data-title="Graphic 2" data-desc="Motion asset poster">
+        <img src="images/1 (7).jpg" alt="Graphic 2">
+        <div class="card-body"><div class="project-title">Graphic 2</div><div class="project-desc">Motion asset poster</div></div>
+      </div>
+
+      <div class="card" data-index="2" data-title="Graphic 3" data-desc="Brand visual">
+        <img src="images/1 (36).jpg" alt="Graphic 3">
+        <div class="card-body"><div class="project-title">Graphic 3</div><div class="project-desc">Brand visual</div></div>
+      </div>
+
+      <div class="card" data-index="3" data-title="Graphic 4" data-desc="UI illustration">
+        <img src="images/1 (3).png" alt="Graphic 4">
+        <div class="card-body"><div class="project-title">Graphic 4</div><div class="project-desc">UI illustration</div></div>
+      </div>
+
+      <div class="card" data-index="4" data-title="Graphic 5" data-desc="Poster design">
+        <img src="images/1 (24).jpg" alt="Graphic 5">
+        <div class="card-body"><div class="project-title">Graphic 5</div><div class="project-desc">Poster design</div></div>
+      </div>
+
+      <div class="card" data-index="5" data-title="Graphic 6" data-desc="Promotional art">
+        <img src="images/1 (23).jpg" alt="Graphic 6">
+        <div class="card-body"><div class="project-title">Graphic 6</div><div class="project-desc">Promotional art</div></div>
+      </div>
+
+      <div class="card" data-index="6" data-title="Graphic 7" data-desc="Concept art">
+        <img src="images/1 (38).jpg" alt="Graphic 7">
+        <div class="card-body"><div class="project-title">Graphic 7</div><div class="project-desc">Concept art</div></div>
+      </div>
+
+      <div class="card" data-index="7" data-title="Graphic 8" data-desc="Icon set">
+        <img src="images/1 (1).png" alt="Graphic 8">
+        <div class="card-body"><div class="project-title">Graphic 8</div><div class="project-desc">Icon set</div></div>
+      </div>
+
+      <div class="card" data-index="8" data-title="Graphic 9" data-desc="Infographic">
+        <img src="images/1 (26).jpg" alt="Graphic 9">
+        <div class="card-body"><div class="project-title">Graphic 9</div><div class="project-desc">Infographic</div></div>
+      </div>
+
+      <div class="card" data-index="9" data-title="Graphic 10" data-desc="Poster">
+        <img src="images/1 (28).jpg" alt="Graphic 10">
+        <div class="card-body"><div class="project-title">Graphic 10</div><div class="project-desc">Poster</div></div>
+      </div>
+
+      <div class="card" data-index="10" data-title="Graphic 11" data-desc="Layout">
+        <img src="images/1 (37).jpg" alt="Graphic 11">
+        <div class="card-body"><div class="project-title">Graphic 11</div><div class="project-desc">Layout</div></div>
+      </div>
+
+      <div class="card" data-index="11" data-title="Graphic 12" data-desc="Cover art">
+        <img src="images/1 (2).png" alt="Graphic 12">
+        <div class="card-body"><div class="project-title">Graphic 12</div><div class="project-desc">Cover art</div></div>
+      </div>
+    </div>
+  </section>
+  <!-- Line 113: 3D Designs section -->
+  <section id="3d" aria-labelledby="3d-heading">
+    <!-- Line 114: Section heading -->
+    <h2 id="3d-heading">3D Designs</h2>
+    <!-- Line 115: Grid container for 3D project cards -->
+    <div class="image-grid">
+      <!-- Line 116: 3D Design 1 card -->
+      <div class="card" data-index="12" data-title="3D Design 1" data-desc="Vehicle study">
+        <!-- Line 117: Image of 3D project -->
+        <img src="images/1 (14).jpg" alt="3D 1">
+        <!-- Line 118: Card body with title and description -->
+        <div class="card-body"><div class="project-title">3D 1</div><div class="project-desc">Vehicle study</div></div>
+      </div>
+      <!-- Line 119: 3D Design 2 card -->
+      <div class="card" data-index="13" data-title="3D Design 2" data-desc="Environment concept">
+        <img src="images/1 (2).jpg" alt="3D 2">
+        <div class="card-body"><div class="project-title">3D 2</div><div class="project-desc">Environment concept</div></div>
+      </div>
+      <!-- Line 120: 3D Design 3 card -->
+      <div class="card" data-index="14" data-title="3D Design 3" data-desc="Product visual">
+        <img src="images/1 (20).jpg" alt="3D 3">
+        <div class="card-body"><div class="project-title">3D 3</div><div class="project-desc">Product visual</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Line 121: Selected Projects section -->
+  <section id="projects" aria-labelledby="projects-heading">
+    <!-- Line 122: Section heading -->
+    <h2 id="projects-heading">Selected Projects</h2>
+    <!-- Line 123: Grid container for project cards -->
+    <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:18px">
+      <!-- Line 124: Project A card -->
+      <article class="card" role="article" tabindex="0">
+        <!-- Line 125: Project image -->
+        <img src="images/1 (6).jpg" alt="Project A">
+        <!-- Line 126: Card body with project details -->
+        <div class="card-body">
+          <!-- Line 127: Project title -->
+          <div class="project-title">Project — Gearbox Motion</div>
+          <!-- Line 128: Project description -->
+          <div class="project-desc">Full 3D modelling and animation for an abstract gearbox simulation. Led concept, modelling, texturing and render pipeline.</div>
+          <!-- Line 129: Link to video -->
+          <div style="margin-top:10px"><a class="btn" href="#videos">View Video</a></div>
+        </div>
+      </article>
+
+      <!-- Line 130: Project B card -->
+      <article class="card" role="article" tabindex="0">
+        <img src="images/1 (14).jpg" alt="Project B">
+        <div class="card-body">
+          <div class="project-title">Project — Transport Study</div>
+          <div class="project-desc">High detail vehicle study used for product visualisation and motion design deliverables.</div>
+          <div style="margin-top:10px"><a class="btn" href="#3d">View 3D</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Line 131: Contact section -->
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Contact</h2>
+
+    <!-- Line 132: Grid container for form and contact card -->
+    <div style="display:grid;grid-template-columns:1fr 360px; gap:18px">
+      <!-- Line 133: Contact form container -->
+      <div>
+        <p style="color:var(--muted)">Interested in working together? Send a message using the form or use the email link.</p>
+
+        <!-- Line 134: Contact form using Formspree -->
+        <form id="contactForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" novalidate>
+          <!-- Line 135: Name and email input row -->
+          <div class="row">
+            <input id="name" name="name" placeholder="Your name" required>
+            <input id="email" name="email" placeholder="Email" type="email" required>
+          </div>
+          <!-- Line 136: Subject input -->
+          <div style="margin-top:10px">
+            <input id="subject" name="subject" placeholder="Subject" required>
+          </div>
+          <!-- Line 137: Message textarea -->
+          <div style="margin-top:10px">
+            <textarea id="message" name="message" placeholder="Message" rows="6" required></textarea>
+          </div>
+          <!-- Line 138: Submit button and note -->
+          <div style="margin-top:10px; display:flex; gap:8px; align-items:center">
+            <button type="submit" class="btn">Send Message</button>
+            <small id="formNote" style="color:var(--muted)">You can sign up at Formspree and paste your form ID into the action attribute above.</small>
+          </div>
+        </form>
+      </div>
+
+      <!-- Line 139: Contact card with social links -->
+      <aside style="background:rgba(255,255,255,0.02); padding:14px; border-radius:12px">
+        <div style="font-weight:700">Contact</div>
+        <div style="color:var(--muted); margin-top:8px">Email: <a href="mailto:ogdportfolio1@gmail.com" style="color:var(--accent)">ogdportfolio1@gmail.com</a></div>
+
+        <!-- Line 140: Social links container -->
+        <div class="social" role="list">
+          <!-- Line 141: LinkedIn icon link -->
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" role="listitem">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-2-2 2 2 0 0 0-2 2v6h-4v-12h4v2"></path>
+              <rect x="2" y="8" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+
+          <!-- Line 142: YouTube icon link -->
+          <a href="https://www.youtube.com" target="_blank" rel="noopener" aria-label="YouTube" role="listitem">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 7.2c0 0-.2-1.7-.9-2.4-.8-.9-1.6-.9-2-1-2.8-.2-7-.2-7-.2s-4.2 0-7 .2c-.4 0-1.3.1-2 1C2.2 5.5 2 7.2 2 7.2S2 9 2 10.8v2.4C2 14.9 2.2 16.7 2.2 16.7s.2 1.7.9 2.4c.8.9 1.9.9 2.4 1 1.8.2 7 .2 7 .2s4.2 0 7-.2c.4 0 1.3-.1 2-1 .7-.7.9-2.4.9-2.4s.2-1.8.2-3.6v-2.4c0-1.8-.2-3.6-.2-3.6z"></path>
+              <path d="M10 14l6-4-6-4z"></path>
+            </svg>
+          </a>
+
+          <!-- Line 143: Behance icon link -->
+          <a href="https://www.behance.net" target="_blank" rel="noopener" aria-label="Behance" role="listitem">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 12h6c2.5 0 4-1.5 4-4s-1.5-4-4-4H2v16h7"></path>
+              <path d="M16 8h4v1h-4z"></path>
+              <path d="M18 15.5A3.5 3.5 0 1 1 18 8.5"></path>
+              <path d="M14 18h6"></path>
+            </svg>
+          </a>
+
+          <!-- Line 144: Instagram icon link -->
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram" role="listitem">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <path d="M17.5 6.5h.01"></path>
+            </svg>
+          </a>
+
+          <!-- Line 145: Email icon link -->
+          <a href="mailto:ogdportfolio1@gmail.com" aria-label="Email" role="listitem">
+            <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Line 146: CV download section -->
+  <section id="cv" style="padding:28px; text-align:center;">
+    <h2>Download My CV</h2>
+    <p style="color:var(--muted)">Latest CV (PDF) — <a href="cv/OGD-CV.pdf" download style="color:var(--accent); text-decoration:none;">Download</a></p>
+  </section>
+
+</main>
+
+<!-- Line 147: Footer -->
+<footer>© Gbolahan Daniel Osonaike — Portfolio</footer>
+
+<!-- Line 148: Back to top button -->
+<button id="backTop" title="Back to top" aria-label="Back to top">▲</button>
+
+<!-- Line 149: Lightbox / gallery overlay container -->
+<div id="overlay" class="overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <!-- Line 150: Viewer container -->
+  <div class="viewer" role="document">
+    <!-- Line 151: Previous image button -->
+    <button class="prev" aria-label="Previous image">‹</button>
+    <!-- Line 152: Main image element -->
+    <img id="viewerImg" src="" alt="">
+    <!-- Line 153: Image meta info -->
+    <div class="meta" id="viewerMeta"></div>
+    <!-- Line 154: Fullscreen toggle button -->
+    <button class="fs" id="fsToggle" title="Toggle fullscreen">⤢</button>
+    <!-- Line 155: Close viewer button -->
+    <button class="close" id="closeViewer" aria-label="Close viewer">✕</button>
+    <!-- Line 156: Next image button -->
+    <button class="next" aria-label="Next image">›</button>
+    <!-- Line 157: Thumbnails container -->
+    <div class="thumbs" id="thumbs" aria-hidden="false"></div>
+  </div>
+</div>
+<script>
+  // Line 158: Shortcut helpers for DOM selection
+  const $ = s => document.querySelector(s), $$ = s => Array.from(document.querySelectorAll(s));
+
+  // Line 159: Typing effect for headline
+  const typingEl = document.getElementById('typing');
+  const phrases = ["Designer", "3D Artist", "Animator", "Digital Storyteller"];
+  let tIndex = 0, charIndex = 0, forward = true;
+
+  // Line 160: Function for looping typing effect
+  function typeLoop(){
+    const cur = phrases[tIndex]; // Current phrase
+    if(forward){
+      charIndex++; // Move forward in phrase
+      if(charIndex > cur.length){ 
+        forward = false; 
+        setTimeout(typeLoop, 900); // Pause at end
+        return; 
+      }
+    } else {
+      charIndex--; // Move backward (deleting)
+      if(charIndex < 0){
+        forward = true; 
+        tIndex = (tIndex + 1) % phrases.length; // Move to next phrase
+        setTimeout(typeLoop, 400); // Pause before typing next
+        return;
+      }
+    }
+    typingEl.textContent = cur.slice(0, charIndex); // Update displayed text
+    setTimeout(typeLoop, forward ? 80 : 40); // Typing speed
+  }
+  // Line 161: Start typing loop
+  typeLoop();
+
+  // Line 162: Back-to-top button functionality
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    // Show button after scrolling 400px
+    if(window.scrollY > 400) backTop.classList.add('show'); 
+    else backTop.classList.remove('show');
+  });
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Line 163: Contact form handling (Formspree ready)
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', (e) => {
+    const action = contactForm.action || '';
+    // Check if Formspree ID is replaced
+    if(action.includes('YOUR_FORMSPREE_ID')){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name||!email||!subject||!message){ 
+        alert('Please complete all fields.'); 
+        return; 
+      }
+      // Fallback: open default mail client
+      const mailto = `mailto:ogdportfolio1@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Name:'+name+'\nEmail:'+email+'\n\n'+message)}`;
+      if(confirm('Form not yet configured. Open your email client to send message instead?')) window.location.href = mailto;
+    }
+  });
+
+  // Line 164: Lightbox / image viewer setup
+  const overlay = $('#overlay');
+  const viewerImg = $('#viewerImg');
+  const viewerMeta = $('#viewerMeta');
+  const thumbsEl = $('#thumbs');
+  const closeBtn = $('#closeViewer');
+  const prevBtn = $('.prev');
+  const nextBtn = $('.next');
+  const fsToggle = $('#fsToggle');
+
+  let galleryItems = [];
+  const cards = $$('.card');
+
+  // Line 165: Collect all gallery images from cards
+  cards.forEach(c => {
+    const img = c.querySelector('img');
+    const full = c.dataset.full || img.getAttribute('src'); // Prefer full-size
+    galleryItems.push({src: img.getAttribute('src'), full: full, title: c.dataset.title||'', desc: c.dataset.desc||''});
+  });
+
+  // Line 166: Build thumbnail elements
+  galleryItems.forEach((it, idx) => {
+    const t = document.createElement('img');
+    t.src = it.src;
+    t.dataset.index = idx;
+    t.alt = it.title || ('Image ' + (idx + 1));
+    t.addEventListener('click', () => openViewer(idx, {fullscreen:false}));
+    thumbsEl.appendChild(t);
+  });
+
+  let currentIndex = 0;
+
+  // Line 167: Show specific index in viewer
+  function showIndex(idx){
+    currentIndex = (idx + galleryItems.length) % galleryItems.length; // Wrap around
+    const item = galleryItems[currentIndex];
+    viewerImg.src = item.full || item.src; 
+    viewerImg.alt = item.title || 'Project image';
+    viewerMeta.textContent = item.title + (item.desc ? (' — ' + item.desc) : '');
+    $$('#thumbs img').forEach(t => t.classList.remove('active'));
+    const active = $(`#thumbs img[data-index="${currentIndex}"]`);
+    if(active) active.classList.add('active');
+    overlay.setAttribute('aria-hidden','false');
+  }
+
+  // Line 168: Open viewer with optional fullscreen
+  async function openViewer(idx, opts={fullscreen:true}){
+    showIndex(idx);
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden'; // Disable scrolling
+    closeBtn.focus();
+    if(opts.fullscreen){
+      try{
+        const viewer = document.querySelector('.viewer');
+        if(viewer && viewer.requestFullscreen){
+          await viewer.requestFullscreen();
+        } else if(document.documentElement.requestFullscreen){
+          await document.documentElement.requestFullscreen();
+        }
+      } catch(err){ console.warn('Fullscreen request failed', err); }
+    }
+  }
+
+  // Line 169: Close viewer function
+  function closeViewer(){
+    overlay.classList.remove('show');
+    document.body.style.overflow = '';
+    overlay.setAttribute('aria-hidden','true');
+    if(document.fullscreenElement) document.exitFullscreen().catch(()=>{});
+    viewerImg.src = '';
+  }
+
+  // Line 170: Event listeners for viewer buttons
+  closeBtn.addEventListener('click', closeViewer);
+  prevBtn.addEventListener('click', () => showIndex(currentIndex-1));
+  nextBtn.addEventListener('click', () => showIndex(currentIndex+1));
+
+  // Line 171: Open viewer on card click or keyboard 'Enter/Space'
+  cards.forEach(c => {
+    c.addEventListener('click', () => openViewer(Number(c.dataset.index), {fullscreen:true}));
+    c.addEventListener('keydown', (e)=> { if(e.key==='Enter' || e.key===' ') openViewer(Number(c.dataset.index), {fullscreen:true}); });
+  });
+
+  // Line 172: Keyboard navigation for viewer
+  document.addEventListener('keydown', (e)=>{
+    if(!overlay.classList.contains('show')) return;
+    if(e.key==='ArrowLeft') showIndex(currentIndex-1);
+    if(e.key==='ArrowRight') showIndex(currentIndex+1);
+    if(e.key==='Escape') closeViewer();
+  });
+
+  // Line 173: Close viewer when clicking outside image
+  overlay.addEventListener('click', (e)=> { if(e.target === overlay) closeViewer(); });
+
+  // Line 174: Fullscreen toggle button
+  fsToggle.addEventListener('click', async ()=>{
+    try{
+      if(!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    }catch(err){ console.warn('Fullscreen toggle error', err); }
+  });
+
+  // Line 175: Touch swipe for mobile navigation
+  let touchStartX = 0, touchEndX = 0;
+  viewerImg.addEventListener('touchstart', (e)=> touchStartX = e.changedTouches[0].screenX);
+  viewerImg.addEventListener('touchend', (e)=> { 
+    touchEndX = e.changedTouches[0].screenX; 
+    const dx = touchEndX - touchStartX; 
+    if(Math.abs(dx) > 40){ 
+      if(dx > 0) showIndex(currentIndex-1); 
+      else showIndex(currentIndex+1); 
+    } 
+  });
+
+  // Line 176: Ensure lazy loading for images
+  $$('img').forEach(img => { if(!img.hasAttribute('loading')) img.setAttribute('loading','lazy'); });
+
+  // Line 177: Particle background animation
+  (() => {
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let w = canvas.width = innerWidth; let h = canvas.height = innerHeight;
+    const num = Math.floor((w*h)/90000); const parts = [];
+    function rand(a,b){return Math.random()*(b-a)+a}
+    function make(){ 
+      for(let i=0;i<num;i++){ 
+        parts.push({x:rand(0,w), y:rand(0,h), vx:rand(-0.25,0.25), vy:rand(-0.25,0.25), r:rand(0.6,1.6)}); 
+      } 
+    }
+    function resize(){ w=canvas.width=innerWidth; h=canvas.height=innerHeight; parts.length=0; make(); }
+    function frame(){
+      ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(0,224,255,0.06)';
+      for(const p of parts){ 
+        p.x+=p.vx; p.y+=p.vy; 
+        if(p.x<-10)p.x=w+10; if(p.x>w+10)p.x=-10; if(p.y<-10)p.y=h+10; if(p.y>h+10)p.y=-10; 
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill(); 
+      }
+      for(let i=0;i<parts.length;i++){
+        for(let j=i+1;j<parts.length;j++){
+          const a=parts[i], b=parts[j]; 
+          const dx=a.x-b.x, dy=a.y-b.y, d=Math.sqrt(dx*dx+dy*dy); 
+          if(d<90){ 
+            ctx.strokeStyle='rgba(0,224,255,'+(0.06*(1-d/90))+')'; ctx.lineWidth=0.8; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); 
+          }
+        }
+      }
+      requestAnimationFrame(frame);
+    }
+    make(); frame(); window.addEventListener('resize', ()=>{ setTimeout(resize, 150); });
+  })();
+
+  // Line 178: Section reveal animations on scroll
+  const sections = document.querySelectorAll('main section');
+  const obs = new IntersectionObserver(entries => { 
+    entries.forEach(ent => { 
+      if(ent.isIntersecting){ 
+        ent.target.style.animation = 'fadeInUp 700ms forwards'; 
+        obs.unobserve(ent.target); 
+      } 
+    }); 
+  }, {threshold:0.12});
+  sections.forEach(s => obs.observe(s));
+</script>
+
